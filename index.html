@@ -28,15 +28,14 @@
         <div class="col-3 temp-num">42</div>
         <div class="col-2 temp-metric">°F</div>
         <div class="col-3 weather-readout">
-          Mostly Cloudy <br />
-          44°F / 38°F <br />
-          Humidity: 69% <br />
-          Wind: 5 mph
+          <span id="weather-descriptor-today">Mostly Cloudy</span><br />
+          <span id="hi-lo-today">44°F / 38°F</span><br />
+          Humidity: <span id="humid-percent">69</span>% <br />
+          Wind: <span id="wind-speed">5</span> <span id="wind-metric">mph</span>
         </div>
       </div>
-              <form action="search" id="city-search-form">
-</form><div class="row search-bar">
-
+<form action="search" id="city-search-form">
+  <div class="row search-bar">
 <div class="col-6">
 <div class="form-group">
 <input type="search" class="form-control" id="serach-box" placeholder="Enter city name" /></div>

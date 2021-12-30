@@ -14,16 +14,19 @@
   border-radius: 4px;
   padding: 10px;
   margin: 10px;
-  font-size: 30px;
 }
 
 .city-display:hover {
   background-color: cyan;
 }
 
+.current-city {
+  font-size: 40px;
+}
+
 .current-time {
   font-size: 20px;
-  padding: 8px;
+  margin-top: 15px;
 }
 
 .current-weather {
@@ -51,10 +54,10 @@
 }
 
 .weather-readout {
-  margin: 30px;
+  margin: 20px;
   text-align: center;
-  font-size: 16px;
-  padding: 30px;
+  font-size: 20px;
+  padding: 20px;
 }
 
 .search-bar {
