@@ -53,3 +53,13 @@ function displayTime() {
 let now = new Date();
 let dateInput = document.querySelector("#current-time");
 dateInput.innerHTML = displayTime(now);
+
+function getPosition(event) {
+  event.preventDefault();
+}
+
+let searchLocation = document.querySelector("#city-search-btn");
+searchLocation.addEventListener("click", getPosition);
+
+let currentLocation = document.querySelector("#current-geoloc-btn");
+currentLocation.addEventListener("click", getPosition);
