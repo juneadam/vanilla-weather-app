@@ -7,6 +7,7 @@
   border: 1px solid rgb(126, 126, 126);
   border-radius: 4px;
   background-color: cornflowerblue;
+  background: linear-gradient(125deg, cornflowerblue 0%, rgb(0, 182, 182) 100%);
 }
 
 .city-display {
