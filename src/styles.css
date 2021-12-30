@@ -1,3 +1,78 @@
-h1 {
-  color: blue;
+.weather-app-whole {
+  display: block;
+  margin: 20px auto;
+  padding: 15px;
+  max-width: max-content;
+  min-width: none;
+  border: 1px solid rgb(126, 126, 126);
+  border-radius: 4px;
+  background-color: cornflowerblue;
+}
+
+.city-display {
+  border: 1px solid cyan;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 10px;
+  font-size: 30px;
+}
+
+.city-display:hover {
+  background-color: cyan;
+}
+
+.current-time {
+  font-size: 20px;
+  padding: 8px;
+}
+
+.current-weather {
+  font-size: 130px;
+  border: 1px solid cyan;
+  border-radius: 4px;
+  margin: 20px 10px 10px;
+}
+
+.current-weather:hover {
+  background-color: cyan;
+}
+
+.temp-emoji {
+  text-align: center;
+}
+
+.temp-num {
+  text-align: right;
+}
+
+.temp-metric {
+  text-align: right;
+  font-weight: 100;
+}
+
+.weather-readout {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.search-bar {
+  margin: 20px 10px 10px;
+  padding: 10px 10px 10px 10px;
+}
+
+.host-link {
+  margin: 10px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.contact-button {
+  display: block;
+  margin: 20px auto 15px;
+  width: 164px;
+}
+.source-link {
+  text-align: center;
+  font-size: 16px;
 }
