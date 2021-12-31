@@ -12,13 +12,14 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="src/styles.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <div class="container weather-app-whole">
       <div class="row city-display">
         <div class="col-6 current-city" id="current-city">Reykjavik, IS</div>
         <div class="col-6 current-time" id="current-time">
-          Wednesday, December 29th, 6:14 PM
+          
         </div>
       </div>
 
@@ -38,12 +39,12 @@
   <div class="row search-bar">
 <div class="col-6">
 <div class="form-group">
-<input type="search" class="form-control" id="serach-box" placeholder="Enter city name" /></div>
+<input type="search" class="form-control" id="search-box" placeholder="Enter city name" /></div>
 </div>
 <div class="col-1"></div>
 <div class="col-1"><button type="submit" class="btn btn-dark" id="city-search-btn">Search</button></div>
  <div class="col-1"></div>
-<div class="col-3"><button type="submit" class="btn btn-light" id="current-geoloc-btn">Here&Now</button></div>
+<div class="col-1"><button type="submit" class="btn btn-light" id="current-geoloc-btn">Here&Now</button></div>
  </form>
 </div>
 </div>

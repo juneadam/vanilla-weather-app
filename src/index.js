@@ -1,28 +1,28 @@
-console.log("sup");
+//clock
 
 function displayTime() {
   let days = [
     "Sunday",
     "Monday",
     "Tuesday",
-    "Wednesday",
+    "Wed",
     "Thursday",
     "Friday",
     "Saturday",
   ];
   let months = [
-    "January",
-    "February",
-    "March",
-    "April",
+    "Jan",
+    "Febr",
+    "Mar",
+    "Apr",
     "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
 
   let currentDay = days[now.getDay()];
@@ -54,8 +54,16 @@ let now = new Date();
 let dateInput = document.querySelector("#current-time");
 dateInput.innerHTML = displayTime(now);
 
+//search
+
+let apiKey = "0588a097340959e1dcf00479a90c9866"; //api key for openweathermap.org
+console.log(apiKey);
+
+//api.openweathermap.org/data/2.5/weather?q={city name}&appid=${apiKey}
+
 function getPosition(event) {
   event.preventDefault();
+  console.log(searchBox.value);
 }
 
 let searchLocation = document.querySelector("#city-search-btn");
@@ -63,3 +71,5 @@ searchLocation.addEventListener("click", getPosition);
 
 let currentLocation = document.querySelector("#current-geoloc-btn");
 currentLocation.addEventListener("click", getPosition);
+
+let searchBox = document.querySelector("#search-box");
