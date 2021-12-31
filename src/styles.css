@@ -24,11 +24,15 @@
 
 .current-city {
   font-size: 40px;
+  text-align: left;
+  font-weight: 700;
 }
 
 .current-time {
-  font-size: 20px;
-  margin-top: 15px;
+  font-size: 25px;
+  margin-top: 10px;
+  text-align: right;
+  font-weight: 600;
 }
 
 .current-weather {
