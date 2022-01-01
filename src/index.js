@@ -61,18 +61,38 @@ let units = `imperial`; //sample
 
 //search function
 
-function getPosition(event) {
+function pullSearchData(event) {
   event.preventDefault();
   let searchBox = document.querySelector("#search-box");
   let citySearch = searchBox.value;
   citySearch = citySearch.replace(/\s+/g, "%20");
   console.log(citySearch);
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&units=${units}&appid=${apiKey}`;
-  console.log(apiUrl);
+  //  axios.get(apiUrl).then()
 }
 
 let searchLocation = document.querySelector("#city-search-btn");
-searchLocation.addEventListener("click", getPosition);
+searchLocation.addEventListener("click", pullSearchData);
+
+// current location
+
+function getPosition(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(catchCoords);
+}
+
+function catchCoords(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  console.log(lat, lon);
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(updateWeatherInfo);
+}
+
+function updateWeatherInfo(response) {
+  console.log(response.data);
+}
 
 let currentLocation = document.querySelector("#current-geoloc-btn");
-currentLocation.addEventListener("click", getPosition); //sample
+currentLocation.addEventListener("click", getPosition);
