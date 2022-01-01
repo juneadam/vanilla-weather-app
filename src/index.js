@@ -92,7 +92,20 @@ function catchCoords(position) {
 
 function updateWeatherInfo(response) {
   console.log(response.data);
+  let currentTemp = response.data.main.temp;
+  currentTemp = Math.round(currentTemp);
+  let hiTemp = response.data.main.temp_max;
+  hiTemp = Math.round(hiTemp);
+  let loTemp = response.data.main.temp_min;
+  loTemp = Math.round(loTemp);
+  console.log(currentTemp, hiTemp, loTemp);
+  let numTempCurrent = document.querySelector("#current-temp-num");
+  let hiTempCurrent = document.querySelector("#hi-temp-current");
+  let loTempCurrent = document.querySelector("#lo-temp-current");
+  numTempCurrent.innerHTML = currentTemp;
+  hiTempCurrent.innerHTML = hiTemp;
+  loTempCurrent.innerHTML = loTemp;
 }
 
-let currentLocation = document.querySelector("#current-geoloc-btn");
-currentLocation.addEventListener("click", getPosition);
+let currentLocation = document.querySelector(`#current-geoloc-btn`);
+currentLocation.addEventListener(`click`, getPosition);
