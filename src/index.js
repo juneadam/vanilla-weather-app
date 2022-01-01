@@ -56,10 +56,11 @@ dateInput.innerHTML = displayTime(now);
 
 //search
 
-let apiKey = "0588a097340959e1dcf00479a90c9866"; //api key for openweathermap.org
-console.log(apiKey);
-
-//api.openweathermap.org/data/2.5/weather?q={city name}&appid=${apiKey}
+let apiKey = `0588a097340959e1dcf00479a90c9866`; //api key for openweathermap.org
+let citySearch = `New%20York`; //sample
+let units = `imperial`; //sample
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&units=${units}&appid=${apiKey}`;
+console.log(apiUrl);
 
 function getPosition(event) {
   event.preventDefault();
