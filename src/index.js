@@ -65,16 +65,15 @@ function pullSearchData(event) {
   event.preventDefault();
   let searchBox = document.querySelector("#search-box");
   let citySearch = searchBox.value;
-  citySearch = citySearch.replace(/\s+/g, "%20");
-  console.log(citySearch);
+  citySearch = citySearch.replace(/\s+/g, "%20"); //looks for white space " " in searches, converts to %20 for URL purposes
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&units=${units}&appid=${apiKey}`;
-  //  axios.get(apiUrl).then()
+  axios.get(apiUrl).then(updateWeatherInfo); //axios requests data set from the API, then allows us to create a function that updates site info based on that data
 }
 
 let searchLocation = document.querySelector("#city-search-btn");
 searchLocation.addEventListener("click", pullSearchData);
 
-// current location
+// current location - on click, find location data, send to function to pull actual coordinates based on "position" accessed by navigator
 
 function getPosition(event) {
   event.preventDefault();
@@ -84,28 +83,42 @@ function getPosition(event) {
 function catchCoords(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
-  console.log(lat, lon);
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`;
-  console.log(apiUrl);
   axios.get(apiUrl).then(updateWeatherInfo);
 }
 
+//function to update HTML strings to display requested data (current location or city search)
+
 function updateWeatherInfo(response) {
   console.log(response.data);
+  // pull data, set to variables
   let currentTemp = response.data.main.temp;
-  currentTemp = Math.round(currentTemp);
   let hiTemp = response.data.main.temp_max;
-  hiTemp = Math.round(hiTemp);
   let loTemp = response.data.main.temp_min;
-  loTemp = Math.round(loTemp);
-  console.log(currentTemp, hiTemp, loTemp);
-  let numTempCurrent = document.querySelector("#current-temp-num");
-  let hiTempCurrent = document.querySelector("#hi-temp-current");
-  let loTempCurrent = document.querySelector("#lo-temp-current");
-  numTempCurrent.innerHTML = currentTemp;
-  hiTempCurrent.innerHTML = hiTemp;
-  loTempCurrent.innerHTML = loTemp;
+  let weatherArrayPull = response.data.weather[0]; // data lives in array, have to pull array point first into variable to then access like an object
+  let weatherDescriptionPull = weatherArrayPull.main;
+  let humidity = response.data.main.humidity;
+  let wind = response.data.wind.speed;
+  let city = response.data.name;
+  let country = response.data.sys.country;
+  //update HTML based on data pulled, round to integer
+  numTempCurrent.innerHTML = Math.round(currentTemp);
+  hiTempCurrent.innerHTML = Math.round(hiTemp);
+  loTempCurrent.innerHTML = Math.round(loTemp);
+  weatherDescriptor.innerHTML = `${weatherDescriptionPull}`;
+  humidPercent.innerHTML = Math.round(humidity);
+  windSpeed.innerHTML = Math.round(wind);
+  currentCity.innerHTML = `${city}, ${country}`;
 }
 
 let currentLocation = document.querySelector(`#current-geoloc-btn`);
 currentLocation.addEventListener(`click`, getPosition);
+
+// set variables to connect to HTML ids, to update on search
+let numTempCurrent = document.querySelector("#current-temp-num");
+let hiTempCurrent = document.querySelector("#hi-temp-current");
+let loTempCurrent = document.querySelector("#lo-temp-current");
+let weatherDescriptor = document.querySelector("#weather-descriptor-today");
+let humidPercent = document.querySelector("#humid-percent");
+let windSpeed = document.querySelector("#wind-speed");
+let currentCity = document.querySelector("#current-city");
