@@ -54,23 +54,24 @@ let now = new Date();
 let dateInput = document.querySelector("#current-time");
 dateInput.innerHTML = displayTime(now);
 
-//search
+//API
 
 let apiKey = `0588a097340959e1dcf00479a90c9866`; //api key for openweathermap.org
-let citySearch = `New%20York`; //sample
 let units = `imperial`; //sample
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&units=${units}&appid=${apiKey}`;
-console.log(apiUrl);
+
+//search function
 
 function getPosition(event) {
   event.preventDefault();
+  let searchBox = document.querySelector("#search-box");
   console.log(searchBox.value);
+  let citySearch = searchBox.value;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&units=${units}&appid=${apiKey}`;
+  console.log(apiUrl);
 }
 
 let searchLocation = document.querySelector("#city-search-btn");
 searchLocation.addEventListener("click", getPosition);
 
 let currentLocation = document.querySelector("#current-geoloc-btn");
-currentLocation.addEventListener("click", getPosition);
-
-let searchBox = document.querySelector("#search-box");
+currentLocation.addEventListener("click", getPosition); //sample
