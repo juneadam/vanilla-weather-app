@@ -64,8 +64,9 @@ let units = `imperial`; //sample
 function getPosition(event) {
   event.preventDefault();
   let searchBox = document.querySelector("#search-box");
-  console.log(searchBox.value);
   let citySearch = searchBox.value;
+  citySearch = citySearch.replace(/\s+/g, "%20");
+  console.log(citySearch);
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&units=${units}&appid=${apiKey}`;
   console.log(apiUrl);
 }
