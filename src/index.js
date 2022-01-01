@@ -25,7 +25,7 @@ function displayTime() {
     "Dec",
   ];
 
-  let currentDay = days[now.getDay()];
+  let currentDay = days[now.getDay()]; //getX is a function build into javascript, pulls from array - associating the JS array with our built one to assign a string
   let currentMonth = months[now.getMonth()];
   let currentDate = now.getDate();
   let currentHour = now.getHours();
@@ -109,6 +109,46 @@ function updateWeatherInfo(response) {
   humidPercent.innerHTML = Math.round(humidity);
   windSpeed.innerHTML = Math.round(wind);
   currentCity.innerHTML = `${city}, ${country}`;
+  emojiUpdate();
+}
+
+function emojiUpdate() {
+  let weatherEmoji = document.querySelector("#weather-emoji");
+  if (weatherDescriptor.innerHTML === `Clear`) {
+    weatherEmoji.innerHTML = `🌞`;
+  }
+  if (weatherDescriptor.innerHTML === `Clouds`) {
+    weatherEmoji.innerHTML = `☁`;
+  }
+  if (
+    weatherDescriptor.innerHTML === `Rain` ||
+    weatherDescriptor.innerHTML === `Drizzle`
+  ) {
+    weatherEmoji.innerHTML = `☔`;
+  }
+  if (
+    weatherDescriptor.innerHTML === `Thunderstorm` ||
+    weatherDescriptor.innerHTML === `Squall`
+  ) {
+    weatherEmoji.innerHTML = `⛈`;
+  }
+  if (weatherDescriptor.innerHTML === `Snow`) {
+    weatherEmoji.innerHTML = `❄`;
+  }
+  if (
+    weatherDescriptor.innerHTML === `Mist` ||
+    weatherDescriptor.innerHTML === `Haze` ||
+    weatherDescriptor.innerHTML === `Fog` ||
+    weatherDescriptor.innerHTML === `Smoke` ||
+    weatherDescriptor.innerHTML === `Sand` ||
+    weatherDescriptor.innerHTML === `Dust` ||
+    weatherDescriptor.innerHTML === `Ash`
+  ) {
+    weatherEmoji.innerHTML = `🌫`;
+  }
+  if (weatherDescriptor.innerHTML === `Tornado`) {
+    weatherEmoji.innerHTML = `🌪`;
+  }
 }
 
 let currentLocation = document.querySelector(`#current-geoloc-btn`);
@@ -122,3 +162,5 @@ let weatherDescriptor = document.querySelector("#weather-descriptor-today");
 let humidPercent = document.querySelector("#humid-percent");
 let windSpeed = document.querySelector("#wind-speed");
 let currentCity = document.querySelector("#current-city");
+
+// emoji dataset
