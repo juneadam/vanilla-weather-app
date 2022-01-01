@@ -5,7 +5,7 @@ function displayTime() {
     "Sunday",
     "Monday",
     "Tuesday",
-    "Wed",
+    "Wednesday",
     "Thursday",
     "Friday",
     "Saturday",
