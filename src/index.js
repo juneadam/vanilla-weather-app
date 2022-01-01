@@ -60,7 +60,6 @@ let apiKey = `0588a097340959e1dcf00479a90c9866`; //api key for openweathermap.or
 let units = `imperial`; //sample
 
 function promptOnLoad() {
-  let cityPrompt = prompt("Please input city name");
   cityPrompt = cityPrompt.replace(/\s+/g, "%20");
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityPrompt}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrl).then(updateWeatherInfo);
