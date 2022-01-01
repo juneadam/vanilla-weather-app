@@ -48,8 +48,9 @@
   background-color: cyan;
 }
 
-.temp-emoji {
+.emoji-box {
   text-align: center;
+  object-fit: cover;
 }
 
 .temp-num {

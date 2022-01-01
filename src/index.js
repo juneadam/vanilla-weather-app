@@ -57,7 +57,16 @@ dateInput.innerHTML = displayTime(now);
 //API
 
 let apiKey = `0588a097340959e1dcf00479a90c9866`; //api key for openweathermap.org
-let units = `imperial`; //sample
+let units = `imperial`; //hold
+
+// set variables to connect to HTML ids, to update on search
+let numTempCurrent = document.querySelector("#current-temp-num");
+let hiTempCurrent = document.querySelector("#hi-temp-current");
+let loTempCurrent = document.querySelector("#lo-temp-current");
+let weatherDescriptor = document.querySelector("#weather-descriptor-today");
+let humidPercent = document.querySelector("#humid-percent");
+let windSpeed = document.querySelector("#wind-speed");
+let currentCity = document.querySelector("#current-city");
 
 function promptOnLoad() {
   cityPrompt = cityPrompt.replace(/\s+/g, "%20");
@@ -103,8 +112,7 @@ function updateWeatherInfo(response) {
   let currentTemp = response.data.main.temp;
   let hiTemp = response.data.main.temp_max;
   let loTemp = response.data.main.temp_min;
-  let weatherArrayPull = response.data.weather[0]; // data lives in array, have to pull array point first into variable to then access like an object
-  let weatherDescriptionPull = weatherArrayPull.main;
+  let weatherMainPull = response.data.weather[0].main;
   let humidity = response.data.main.humidity;
   let wind = response.data.wind.speed;
   let city = response.data.name;
@@ -113,12 +121,14 @@ function updateWeatherInfo(response) {
   numTempCurrent.innerHTML = Math.round(currentTemp);
   hiTempCurrent.innerHTML = Math.round(hiTemp);
   loTempCurrent.innerHTML = Math.round(loTemp);
-  weatherDescriptor.innerHTML = `${weatherDescriptionPull}`;
+  weatherDescriptor.innerHTML = `${weatherMainPull}`;
   humidPercent.innerHTML = Math.round(humidity);
   windSpeed.innerHTML = Math.round(wind);
   currentCity.innerHTML = `${city}, ${country}`;
   emojiUpdate();
 }
+
+//associating emoji with 'main' dataset
 
 function emojiUpdate() {
   let weatherEmoji = document.querySelector("#weather-emoji");
@@ -161,14 +171,5 @@ function emojiUpdate() {
 
 let currentLocation = document.querySelector(`#current-geoloc-btn`);
 currentLocation.addEventListener(`click`, getPosition);
-
-// set variables to connect to HTML ids, to update on search
-let numTempCurrent = document.querySelector("#current-temp-num");
-let hiTempCurrent = document.querySelector("#hi-temp-current");
-let loTempCurrent = document.querySelector("#lo-temp-current");
-let weatherDescriptor = document.querySelector("#weather-descriptor-today");
-let humidPercent = document.querySelector("#humid-percent");
-let windSpeed = document.querySelector("#wind-speed");
-let currentCity = document.querySelector("#current-city");
 
 // emoji dataset
