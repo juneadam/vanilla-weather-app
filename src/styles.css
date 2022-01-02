@@ -1,3 +1,7 @@
+body {
+  background-color: rgb(207, 245, 245);
+}
+
 .weather-app-whole {
   display: block;
   margin: 20px auto;

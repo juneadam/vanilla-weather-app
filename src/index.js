@@ -57,7 +57,7 @@ dateInput.innerHTML = displayTime(now);
 //API
 
 let apiKey = `0588a097340959e1dcf00479a90c9866`; //api key for openweathermap.org
-let units = `imperial`; //hold
+let units = `imperial`;
 let cnt = `5`;
 
 // set variables to connect to HTML ids, to update on search
