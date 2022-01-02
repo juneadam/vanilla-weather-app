@@ -65,6 +65,15 @@
   font-weight: 100;
 }
 
+.temp-units .active {
+  color: black;
+  cursor: default;
+}
+
+.temp-units .active:hover {
+  text-decoration: none;
+}
+
 .weather-readout {
   margin-top: 20px;
   margin-left: 30px;

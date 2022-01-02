@@ -184,6 +184,8 @@ currentLocation.addEventListener(`click`, getPosition);
 
 function convertToMetric(event) {
   event.preventDefault();
+  conversionCelsius.classList.add(`active`);
+  conversionFahrenheit.classList.remove(`active`);
   let convertedCurrentM = Math.round(((imperialTempCurrent - 32) * 5) / 9);
   numTempCurrent.innerHTML = `${convertedCurrentM}`;
   let convertedHiM = Math.round(((imperialTempHi - 32) * 5) / 9);
@@ -199,6 +201,8 @@ function convertToMetric(event) {
 
 function convertToImperial(event) {
   event.preventDefault();
+  conversionFahrenheit.classList.add(`active`);
+  conversionCelsius.classList.remove(`active`);
   numTempCurrent.innerHTML = Math.round(imperialTempCurrent);
   hiTempCurrent.innerHTML = Math.round(imperialTempHi);
   hiUnit.innerHTML = `F`;
