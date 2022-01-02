@@ -71,6 +71,7 @@ let humidPercent = document.querySelector("#humid-percent");
 let windSpeed = document.querySelector("#wind-speed");
 let windUnit = document.querySelector("#wind-unit");
 let currentCity = document.querySelector("#current-city");
+let iconElement = document.querySelector("#icon");
 
 function promptOnLoad() {
   cityPrompt = cityPrompt.replace(/\s+/g, "%20");
@@ -145,7 +146,12 @@ function updateWeatherInfo(response) {
   humidPercent.innerHTML = Math.round(humidity);
   windSpeed.innerHTML = Math.round(wind);
   currentCity.innerHTML = `${city}, ${country}`;
-  emojiUpdate();
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
+  iconElement.setAttribute("width", 175);
   pullCoord(response.data.coord);
 }
 
@@ -199,41 +205,6 @@ function populateForecast(response) {
     // using inerpolation ${} allows for dynamic HTML via javascript
     forecastElement.innerHTML = forecastHTML;
   });
-}
-
-//associating emoji with 'main' dataset
-
-function emojiUpdate() {
-  let weatherEmoji = document.querySelector("#weather-emoji");
-  if (weatherMain === `Clear`) {
-    weatherEmoji.innerHTML = `🌞`;
-  }
-  if (weatherMain === `Clouds`) {
-    weatherEmoji.innerHTML = `☁`;
-  }
-  if (weatherMain === `Rain` || weatherMain === `Drizzle`) {
-    weatherEmoji.innerHTML = `☔`;
-  }
-  if (weatherMain === `Thunderstorm` || weatherMain === `Squall`) {
-    weatherEmoji.innerHTML = `⛈`;
-  }
-  if (weatherMain === `Snow`) {
-    weatherEmoji.innerHTML = `❄`;
-  }
-  if (
-    weatherMain === `Mist` ||
-    weatherMain === `Haze` ||
-    weatherMain === `Fog` ||
-    weatherMain === `Smoke` ||
-    weatherMain === `Sand` ||
-    weatherMain === `Dust` ||
-    weatherMain === `Ash`
-  ) {
-    weatherEmoji.innerHTML = `🌫`;
-  }
-  if (weatherMain === `Tornado`) {
-    weatherEmoji.innerHTML = `🌪`;
-  }
 }
 
 // conversion
