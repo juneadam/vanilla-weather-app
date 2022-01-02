@@ -26,11 +26,11 @@
 
       <div class="row current-weather">
         <div class="col-2 emoji-box" id="weather-emoji"></div>
-        <div class="col-1"></div>
+        <div class="col-1" id="boundary"></div>
         <div class="col-2 temp-num" id="current-temp-num"></div>
-        <div class="col-3 temp-units"> <a href="#" id="fahrenheitConversion" class="active">°F</a> / <a href="#" id="celsiusConversion">°C</a> </div>
+        <div class="col-3 temp-units">°<a href="#" id="fahrenheitConversion" class="active">F</a> / °<a href="#" id="celsiusConversion">C</a> </div>
         <div class="col-3 weather-readout">
-          <span id="weather-descriptor-today"></span><br />
+          <span class="weather-descriptor-today" id="weather-descriptor-today"></span><br />
           <span id="hi-temp-current"></span>°<span id="hi-unit">F</span> / <span id="lo-temp-current"></span>°<span id="lo-unit">F</span><br />
           Humidity: <span id="humid-percent"></span>% <br />
           Wind: <span id="wind-speed"></span> <span id="wind-unit">mph</span>

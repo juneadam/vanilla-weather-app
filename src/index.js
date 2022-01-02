@@ -115,7 +115,7 @@ function updateWeatherInfo(response) {
   let currentTemp = response.data.main.temp;
   let hiTemp = response.data.main.temp_max;
   let loTemp = response.data.main.temp_min;
-  let weatherMainPull = response.data.weather[0].main;
+  let weatherDescriptPull = response.data.weather[0].description;
   let humidity = response.data.main.humidity;
   let wind = response.data.wind.speed;
   let city = response.data.name;
@@ -125,11 +125,12 @@ function updateWeatherInfo(response) {
   imperialTempHi = hiTemp;
   imperialTempLo = loTemp;
   imperialWind = wind;
+  weatherMain = response.data.weather[0].main;
   //update HTML based on data pulled, round to integer
   numTempCurrent.innerHTML = Math.round(currentTemp);
   hiTempCurrent.innerHTML = Math.round(hiTemp);
   loTempCurrent.innerHTML = Math.round(loTemp);
-  weatherDescriptor.innerHTML = `${weatherMainPull}`;
+  weatherDescriptor.innerHTML = `${weatherDescriptPull}`;
   humidPercent.innerHTML = Math.round(humidity);
   windSpeed.innerHTML = Math.round(wind);
   currentCity.innerHTML = `${city}, ${country}`;
@@ -140,39 +141,33 @@ function updateWeatherInfo(response) {
 
 function emojiUpdate() {
   let weatherEmoji = document.querySelector("#weather-emoji");
-  if (weatherDescriptor.innerHTML === `Clear`) {
+  if (weatherMain === `Clear`) {
     weatherEmoji.innerHTML = `🌞`;
   }
-  if (weatherDescriptor.innerHTML === `Clouds`) {
+  if (weatherMain === `Clouds`) {
     weatherEmoji.innerHTML = `☁`;
   }
-  if (
-    weatherDescriptor.innerHTML === `Rain` ||
-    weatherDescriptor.innerHTML === `Drizzle`
-  ) {
+  if (weatherMain === `Rain` || weatherMain === `Drizzle`) {
     weatherEmoji.innerHTML = `☔`;
   }
-  if (
-    weatherDescriptor.innerHTML === `Thunderstorm` ||
-    weatherDescriptor.innerHTML === `Squall`
-  ) {
+  if (weatherMain === `Thunderstorm` || weatherMain === `Squall`) {
     weatherEmoji.innerHTML = `⛈`;
   }
-  if (weatherDescriptor.innerHTML === `Snow`) {
+  if (weatherMain === `Snow`) {
     weatherEmoji.innerHTML = `❄`;
   }
   if (
-    weatherDescriptor.innerHTML === `Mist` ||
-    weatherDescriptor.innerHTML === `Haze` ||
-    weatherDescriptor.innerHTML === `Fog` ||
-    weatherDescriptor.innerHTML === `Smoke` ||
-    weatherDescriptor.innerHTML === `Sand` ||
-    weatherDescriptor.innerHTML === `Dust` ||
-    weatherDescriptor.innerHTML === `Ash`
+    weatherMain === `Mist` ||
+    weatherMain === `Haze` ||
+    weatherMain === `Fog` ||
+    weatherMain === `Smoke` ||
+    weatherMain === `Sand` ||
+    weatherMain === `Dust` ||
+    weatherMain === `Ash`
   ) {
     weatherEmoji.innerHTML = `🌫`;
   }
-  if (weatherDescriptor.innerHTML === `Tornado`) {
+  if (weatherMain === `Tornado`) {
     weatherEmoji.innerHTML = `🌪`;
   }
 }
@@ -216,6 +211,7 @@ let imperialTempCurrent = null; //setting a null variable to be updated using se
 let imperialTempHi = null;
 let imperialTempLo = null;
 let imperialWind = null;
+let weatherMain = null;
 
 let conversionCelsius = document.querySelector(`#celsiusConversion`);
 conversionCelsius.addEventListener(`click`, convertToMetric);
