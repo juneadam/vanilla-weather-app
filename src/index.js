@@ -115,6 +115,9 @@ function catchCoords(position) {
   axios.get(apiUrl).then(updateWeatherInfo);
 }
 
+let currentLocation = document.querySelector(`#current-geoloc-btn`);
+currentLocation.addEventListener(`click`, getPosition);
+
 //function to update HTML strings to display requested data (current location or city search)
 
 function updateWeatherInfo(response) {
@@ -148,8 +151,23 @@ function updateWeatherInfo(response) {
 
 //forecast JS concatenation
 
+function formatTimestamp(timestamp) {
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  return days[day];
+}
+
 function populateForecast(response) {
-  console.log(response.data);
+  forecast = response.data.daily;
   console.log(Math.round(response.data.daily[1].temp.max));
   console.log(response.data.daily[2].temp.max);
   console.log(response.data.daily[3].temp.max);
@@ -158,13 +176,19 @@ function populateForecast(response) {
   let forecastElement = document.querySelector("#forecast-row");
   let forecastHTML = `<div class="row">`; //setting new variable so that we can concatenate it with itself, repeating it x number of times
   let days = ["Thu", "Fri", "Sat", "Sun", "Mon"]; //setting an array so that x number of times = number of objects in array (ie 5 here)
-  days.forEach(function (day) {
+  forecast.forEach(function (forecastDay) {
     forecastHTML =
       forecastHTML +
       `<div class="col-2 day-box">
-            ${day}<br />
+            ${formatTimestamp(forecastDay.dt)}<br />
             <span id="day1Emoji">❄</span><br />
-            <span id="hiDay1">33</span> / <span id="loDay1">28</span>
+            <span id="hiDay1">
+            ${Math.round(forecastDay.temp.max)}
+            </span>
+             / 
+            <span id="loDay1">
+            ${Math.round(forecastDay.temp.min)}
+            </span>
           </div>
   `;
   }); //forEach loops the internal function however many times based on the number of objects in the array it's being pulled from (ie 5 here)
@@ -208,9 +232,6 @@ function emojiUpdate() {
     weatherEmoji.innerHTML = `🌪`;
   }
 }
-
-let currentLocation = document.querySelector(`#current-geoloc-btn`);
-currentLocation.addEventListener(`click`, getPosition);
 
 // conversion
 
