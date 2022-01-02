@@ -3,7 +3,7 @@
   margin: 20px auto;
   padding: 15px;
   max-width: max-content;
-  min-width: none;
+  min-width: 787px;
   border: 1px solid rgb(126, 126, 126);
   border-radius: 4px;
   background-color: cornflowerblue;
@@ -88,6 +88,25 @@
 
 .weather-descriptor-today {
   text-transform: capitalize;
+}
+
+.forecast {
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 12px;
+}
+
+.day-box {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  border: 1px solid cyan;
+  border-radius: 4px;
+  transition: ease-in-out 150ms;
+}
+
+.day-box:hover {
+  background-color: cyan;
 }
 
 .search-bar {
