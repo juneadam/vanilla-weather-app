@@ -62,10 +62,13 @@ let units = `imperial`; //hold
 // set variables to connect to HTML ids, to update on search
 let numTempCurrent = document.querySelector("#current-temp-num");
 let hiTempCurrent = document.querySelector("#hi-temp-current");
+let hiUnit = document.querySelector(`#hi-unit`);
 let loTempCurrent = document.querySelector("#lo-temp-current");
+let loUnit = document.querySelector(`#lo-unit`);
 let weatherDescriptor = document.querySelector("#weather-descriptor-today");
 let humidPercent = document.querySelector("#humid-percent");
 let windSpeed = document.querySelector("#wind-speed");
+let windUnit = document.querySelector("#wind-unit");
 let currentCity = document.querySelector("#current-city");
 
 function promptOnLoad() {
@@ -117,6 +120,11 @@ function updateWeatherInfo(response) {
   let wind = response.data.wind.speed;
   let city = response.data.name;
   let country = response.data.sys.country;
+  //update global null variable to include data pulled
+  imperialTempCurrent = currentTemp;
+  imperialTempHi = hiTemp;
+  imperialTempLo = loTemp;
+  imperialWind = wind;
   //update HTML based on data pulled, round to integer
   numTempCurrent.innerHTML = Math.round(currentTemp);
   hiTempCurrent.innerHTML = Math.round(hiTemp);
@@ -172,4 +180,27 @@ function emojiUpdate() {
 let currentLocation = document.querySelector(`#current-geoloc-btn`);
 currentLocation.addEventListener(`click`, getPosition);
 
-// emoji dataset
+// conversion
+
+function convertToMetric(event) {
+  event.preventDefault();
+  let convertedCurrentM = Math.round(((imperialTempCurrent - 32) * 5) / 9);
+  numTempCurrent.innerHTML = `${convertedCurrentM}`;
+  let convertedHiM = Math.round(((imperialTempHi - 32) * 5) / 9);
+  hiTempCurrent.innerHTML = `${convertedHiM}`;
+  hiUnit.innerHTML = `C`;
+  let convertedLoM = Math.round(((imperialTempLo - 32) * 5) / 9);
+  loTempCurrent.innerHTML = `${convertedLoM}`;
+  loUnit.innerHTML = `C`;
+  let convertedWindM = Math.round(imperialWind * 1.60934);
+  windSpeed.innerHTML = `${convertedWindM}`;
+  windUnit.innerHTML = `km/h`;
+}
+
+let imperialTempCurrent = null; //setting a null variable to be updated using search functions
+let imperialTempHi = null;
+let imperialTempLo = null;
+let imperialWind = null;
+
+let conversionCelsius = document.querySelector(`#conversion`);
+conversionCelsius.addEventListener(`click`, convertToMetric);

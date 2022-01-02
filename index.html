@@ -28,12 +28,12 @@
         <div class="col-2 emoji-box" id="weather-emoji"></div>
         <div class="col-1"></div>
         <div class="col-2 temp-num" id="current-temp-num"></div>
-        <div class="col-3 temp-metric"> <span id="current-metric">°F / <a>°C</a></span> </div>
+        <div class="col-3 temp-units"> <span id="current-unit">°F / <a href="#" id="conversion">°C</a></span> </div>
         <div class="col-3 weather-readout">
           <span id="weather-descriptor-today"></span><br />
-          <span id="hi-temp-current"></span>°F / <span id="lo-temp-current"></span>°F<br />
+          <span id="hi-temp-current"></span>°<span id="hi-unit">F</span> / <span id="lo-temp-current"></span>°<span id="lo-unit">F</span><br />
           Humidity: <span id="humid-percent"></span>% <br />
-          Wind: <span id="wind-speed"></span> <span id="wind-metric">mph</span>
+          Wind: <span id="wind-speed"></span> <span id="wind-unit">mph</span>
         </div>
       </div>
 <form action="search" id="city-search-form">

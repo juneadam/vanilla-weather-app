@@ -54,12 +54,12 @@
 }
 
 .temp-num {
-  text-align: right;
+  text-align: left;
   margin-left: 20px;
 }
 
-.temp-metric {
-  text-align: center;
+.temp-units {
+  text-align: right;
   margin-top: 40px;
   font-size: 50px;
   font-weight: 100;
