@@ -55,15 +55,19 @@
 
 .temp-num {
   text-align: right;
+  margin-left: 20px;
 }
 
 .temp-metric {
-  text-align: right;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 50px;
   font-weight: 100;
 }
 
 .weather-readout {
-  margin: 20px;
+  margin-top: 20px;
+  margin-left: 30px;
   text-align: center;
   font-size: 20px;
   padding: 20px;
