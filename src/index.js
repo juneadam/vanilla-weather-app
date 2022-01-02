@@ -82,6 +82,13 @@ promptOnLoad();
 
 //search function
 
+function pullCoord(coordinates) {
+  let lat = coordinates.lat;
+  let lon = coordinates.lon;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`;
+  axios.get(apiUrl).then(populateForecast);
+}
+
 function pullSearchData(event) {
   event.preventDefault();
   let searchBox = document.querySelector("#search-box");
@@ -136,12 +143,18 @@ function updateWeatherInfo(response) {
   windSpeed.innerHTML = Math.round(wind);
   currentCity.innerHTML = `${city}, ${country}`;
   emojiUpdate();
-  populateForecast();
+  pullCoord(response.data.coord);
 }
 
 //forecast JS concatenation
 
-function populateForecast() {
+function populateForecast(response) {
+  console.log(response.data);
+  console.log(Math.round(response.data.daily[1].temp.max));
+  console.log(response.data.daily[2].temp.max);
+  console.log(response.data.daily[3].temp.max);
+  console.log(response.data.daily[4].temp.max);
+  console.log(response.data.daily[5].temp.max);
   let forecastElement = document.querySelector("#forecast-row");
   let forecastHTML = `<div class="row">`; //setting new variable so that we can concatenate it with itself, repeating it x number of times
   let days = ["Thu", "Fri", "Sat", "Sun", "Mon"]; //setting an array so that x number of times = number of objects in array (ie 5 here)
