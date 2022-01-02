@@ -58,6 +58,7 @@ dateInput.innerHTML = displayTime(now);
 
 let apiKey = `0588a097340959e1dcf00479a90c9866`; //api key for openweathermap.org
 let units = `imperial`; //hold
+let cnt = `5`;
 
 // set variables to connect to HTML ids, to update on search
 let numTempCurrent = document.querySelector("#current-temp-num");
@@ -135,6 +136,29 @@ function updateWeatherInfo(response) {
   windSpeed.innerHTML = Math.round(wind);
   currentCity.innerHTML = `${city}, ${country}`;
   emojiUpdate();
+  populateForecast();
+}
+
+//forecast JS concatenation
+
+function populateForecast() {
+  let forecastElement = document.querySelector("#forecast-row");
+  let forecastHTML = `<div class="row">`; //setting new variable so that we can concatenate it with itself, repeating it x number of times
+  let days = ["Thu", "Fri", "Sat", "Sun", "Mon"]; //setting an array so that x number of times = number of objects in array (ie 5 here)
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-2 day-box">
+            ${day}<br />
+            <span id="day1Emoji">❄</span><br />
+            <span id="hiDay1">33</span> / <span id="loDay1">28</span>
+          </div>
+  `;
+  }); //forEach loops the internal function however many times based on the number of objects in the array it's being pulled from (ie 5 here)
+  //this has now populated the forecast with 5 boxes
+  // using inerpolation ${} allows for dynamic HTML via javascript
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
 }
 
 //associating emoji with 'main' dataset
