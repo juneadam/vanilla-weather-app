@@ -122,7 +122,6 @@ currentLocation.addEventListener(`click`, getPosition);
 //function to update HTML strings to display requested data (current location or city search)
 
 function updateWeatherInfo(response) {
-  console.log(response.data);
   // pull data, set to variables
   let currentTemp = response.data.main.temp;
   let hiTemp = response.data.main.temp_max;
