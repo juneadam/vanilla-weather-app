@@ -197,10 +197,24 @@ function convertToMetric(event) {
   windUnit.innerHTML = `km/h`;
 }
 
+function convertToImperial(event) {
+  event.preventDefault();
+  numTempCurrent.innerHTML = Math.round(imperialTempCurrent);
+  hiTempCurrent.innerHTML = Math.round(imperialTempHi);
+  hiUnit.innerHTML = `F`;
+  loTempCurrent.innerHTML = Math.round(imperialTempLo);
+  loUnit.innerHTML = `F`;
+  windSpeed.innerHTML = Math.round(imperialWind);
+  windUnit.innerHTML = `mph`;
+}
+
 let imperialTempCurrent = null; //setting a null variable to be updated using search functions
 let imperialTempHi = null;
 let imperialTempLo = null;
 let imperialWind = null;
 
-let conversionCelsius = document.querySelector(`#conversion`);
+let conversionCelsius = document.querySelector(`#celsiusConversion`);
 conversionCelsius.addEventListener(`click`, convertToMetric);
+
+let conversionFahrenheit = document.querySelector(`#fahrenheitConversion`);
+conversionFahrenheit.addEventListener(`click`, convertToImperial);
