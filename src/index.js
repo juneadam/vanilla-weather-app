@@ -1,53 +1,15 @@
 //clock
 
 function displayTime() {
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  let months = [
-    "Jan",
-    "Febr",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
+	// get the date once and reuse it
+	const now = new Date() // const because this variable will never hold a different date object
 
-  let currentDay = days[now.getDay()]; //getX is a function build into javascript, pulls from array - associating the JS array with our built one to assign a string
-  let currentMonth = months[now.getMonth()];
-  let currentDate = now.getDate();
-  let currentHour = now.getHours();
-  let AMPM = `AM`;
-  if (currentHour === 0) {
-    currentHour = currentHour + 12;
-    AMPM = `AM`;
-  }
-  if (currentHour === 12) {
-    AMPM = `PM`;
-  }
-  if (currentHour > 12) {
-    currentHour = currentHour - 12;
-    AMPM = `PM`;
-  }
-  let currentMinutes = now.getMinutes();
-  if (currentMinutes < 10) {
-    currentMinutes = `0` + currentMinutes;
-  }
-
-  let sentence = `${currentDay}, ${currentMonth} ${currentDate}, ${currentHour}:${currentMinutes} ${AMPM}`;
-  return sentence;
+	// hardcoded locale for now because it's actually pretty complicated to get it programmatically
+	// https://stackoverflow.com/questions/1043339/javascript-for-detecting-browser-language-preference
+	return now.toLocaleString('en-US', {
+		dateStyle: 'full', 
+		timeStyle: 'medium',
+	})
 }
 
 let now = new Date();
